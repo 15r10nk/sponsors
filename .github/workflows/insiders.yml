@@ -1,0 +1,29 @@
+name: insiders
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 * * * *'
+
+jobs:
+  insiders:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: python -m pip install httpx
+    - name: Grant/revoke access
+      env:
+        TOKEN: ${{ secrets.TOKEN }}
+      run: python insiders.py
+    - name: Commit changes
+      run: |
+        git config --global user.name "Frank Hoffmann"
+        git config --global user.email "15r10nk@users.noreply.github.com"
+        if git commit -am "CI: Update JSON data"; then git push; fi

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "ddanier",
+    "image": "https://avatars.githubusercontent.com/u/113563?u=ed1dc79de72f93bd78581f88ebc6952b62f472da&v=4",
+    "url": "https://github.com/ddanier",
+    "org": false
+  },
+  {
+    "name": "pydantic",
+    "image": "https://avatars.githubusercontent.com/u/110818415?v=4",
+    "url": "https://github.com/pydantic",
+    "org": true
+  },
+  {
+    "name": "alexmojaki",
+    "image": "https://avatars.githubusercontent.com/u/3627481?u=9bb2e0cf1c5ef3d0609d2e639a135b7b4ca8b463&v=4",
+    "url": "https://github.com/alexmojaki",
+    "org": false
+  },
+  {
+    "name": "nathanjmcdougall",
+    "image": "https://avatars.githubusercontent.com/u/18602289?u=a6299c2ae595ec87c9727b872b0ac08d435de436&v=4",
+    "url": "https://github.com/nathanjmcdougall",
+    "org": false
+  },
+  {
+    "name": "pawamoy",
+    "image": "https://avatars.githubusercontent.com/u/3999221?u=b030e4c89df2f3a36bc4710b925bdeb6745c9856&v=4",
+    "url": "https://github.com/pawamoy",
+    "org": false
+  }
+]

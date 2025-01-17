@@ -1,5 +1,17 @@
 [
   {
+    "name": "astral-sh",
+    "image": "https://avatars.githubusercontent.com/u/115962839?v=4",
+    "url": "https://github.com/astral-sh",
+    "org": true
+  },
+  {
+    "name": "logfire",
+    "image": "https://avatars.githubusercontent.com/u/54740855?v=4",
+    "url": "https://github.com/logfire",
+    "org": true
+  },
+  {
     "name": "tiangolo",
     "image": "https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4",
     "url": "https://github.com/tiangolo",
@@ -10,12 +22,6 @@
     "image": "https://avatars.githubusercontent.com/u/113563?u=ed1dc79de72f93bd78581f88ebc6952b62f472da&v=4",
     "url": "https://github.com/ddanier",
     "org": false
-  },
-  {
-    "name": "pydantic",
-    "image": "https://avatars.githubusercontent.com/u/110818415?v=4",
-    "url": "https://github.com/pydantic",
-    "org": true
   },
   {
     "name": "alexmojaki",

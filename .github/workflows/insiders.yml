@@ -23,7 +23,9 @@ jobs:
         TOKEN: ${{ secrets.TOKEN }}
       run: python insiders.py
     - name: Commit changes
-      run: |
-        git config --global user.name "Frank Hoffmann"
-        git config --global user.email "15r10nk@users.noreply.github.com"
-        if git commit -am "CI: Update JSON data"; then git push; fi
+      uses: stefanzweifel/git-auto-commit-action@v2.3.0
+      with:
+        commit_message: "CI: Update JSON data"
+        branch: main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

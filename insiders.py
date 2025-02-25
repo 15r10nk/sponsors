@@ -10,7 +10,7 @@ import httpx
 # permissions: admin:org and read:user
 GITHUB_TOKEN = os.getenv("TOKEN")
 SPONSORED_ACCOUNT = "15r10nk"
-MIN_AMOUNT = 4
+MIN_AMOUNT = 10
 INSIDERS_TEAMS = [
     ("15r10nk-insiders", "insiders"),
 ]
@@ -19,6 +19,18 @@ PRIVILEGED_USERS = frozenset(
         "15r10nk",  # Myself.
     }
 )
+
+# 4$ sponsors
+FIRST_SPONSORS = frozenset(
+    {
+    "tiangolo",
+    "ddanier",
+    "alexmojaki",
+    "nathanjmcdougall",
+    "pawamoy",
+    }
+)
+
 ORG_USERS = {
 }
 
@@ -158,8 +170,15 @@ def get_invited(org: str, team: str) -> set[str]:
     response.raise_for_status()
     return {user["login"] for user in response.json()}
 
+dry_run="CI" not in os.environ
+if dry_run:
+    print("dry run")
 
 def grant(user: str, org: str, team: str):
+    if dry_run:
+        print("grant",user,org,team)
+        return
+
     with httpx.Client() as client:
         response = client.put(
             f"https://api.github.com/orgs/{org}/teams/{team}/memberships/{user}",
@@ -177,6 +196,10 @@ def grant(user: str, org: str, team: str):
 
 
 def revoke(user: str, org: str, team: str):
+    if dry_run:
+        print("revoke",user,org,team)
+        return
+
     with httpx.Client() as client:
         response = client.delete(
             f"https://api.github.com/orgs/{org}/teams/{team}/memberships/{user}",
@@ -192,13 +215,19 @@ def revoke(user: str, org: str, team: str):
         else:
             print(f"@{user} removed from {org}/{team} team")
 
+def min_amount(sponsor):
+    if sponsor.account.name in FIRST_SPONSORS:
+        return 4
+    else:
+        return 10
 
 def main():
     sponsors = get_sponsors()
 
     eligible_orgs = {sponsor.account.name for sponsor in sponsors if sponsor.account.org and sponsor.amount >= MIN_AMOUNT}
-    eligible_users = {sponsor.account.name for sponsor in sponsors if not sponsor.account.org and sponsor.amount >= MIN_AMOUNT}
+    eligible_users = {sponsor.account.name for sponsor in sponsors if not sponsor.account.org and sponsor.amount >= min_amount(sponsor)}
     eligible_users |= PRIVILEGED_USERS
+    
     for eligible_org in eligible_orgs:
         eligible_users |= ORG_USERS.get(eligible_org, set())
 

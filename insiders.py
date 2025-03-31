@@ -233,14 +233,18 @@ def main():
         eligible_users |= ORG_USERS.get(eligible_org, set())
 
     for org, team in INSIDERS_TEAMS:
-        members = get_members(org, team) | get_invited(org, team)
+        open_invitations=get_invited(org, team)
+        members = get_members(org, team)
+        print("open invitations:", open_invitations)
         # revoke accesses
         for user in members:
             if user not in eligible_users:
+                print("revoke access for", user)
                 revoke(user, org, team)
         # grant accesses
         for user in eligible_users:
             if user not in members:
+                print("invite", user)
                 grant(user, org, team)
 
     total = sum(sponsor.amount for sponsor in sponsors)

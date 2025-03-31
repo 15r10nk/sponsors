@@ -17,6 +17,7 @@ INSIDERS_TEAMS = [
 PRIVILEGED_USERS = frozenset(
     {
         "15r10nk",  # Myself.
+        "max-sixty", # for the idea of #41
     }
 )
 

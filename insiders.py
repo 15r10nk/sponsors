@@ -18,6 +18,8 @@ PRIVILEGED_USERS = frozenset(
     {
         "15r10nk",  # Myself.
         "max-sixty", # for the idea of #41
+        "slafs", # winner fosstodon giveaway
+        "zmievsa", # winner X giveaway
     }
 )
 

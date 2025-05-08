@@ -20,6 +20,7 @@ PRIVILEGED_USERS = frozenset(
         "max-sixty", # for the idea of #41
         "slafs", # winner fosstodon giveaway
         "zmievsa", # winner X giveaway
+        "MRigal", # talk EuroPython2025
     }
 )
 

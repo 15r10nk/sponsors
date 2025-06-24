@@ -1,5 +1,11 @@
 [
   {
+    "name": "adamchainz",
+    "image": "https://avatars.githubusercontent.com/u/857609?v=4",
+    "url": "https://github.com/adamchainz",
+    "org": false
+  },
+  {
     "name": "astral-sh",
     "image": "https://avatars.githubusercontent.com/u/115962839?v=4",
     "url": "https://github.com/astral-sh",

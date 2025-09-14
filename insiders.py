@@ -102,6 +102,11 @@ class Sponsor:
 
 def get_sponsors() -> list[Sponsor]:
     sponsors = []
+    with open("sponsors_overwrite.json") as file:
+        overwrites=json.load(file)
+
+
+
     with httpx.Client(base_url="https://api.github.com") as client:
         cursor = "null"
         while True:
@@ -120,11 +125,19 @@ def get_sponsors() -> list[Sponsor]:
                 if item["isOneTimePayment"]:
                     continue
 
+                name=item["sponsorEntity"]["login"]
+
+                def get_overwrite(key):
+                    entries=[o for o in overwrites if o["name"]==name]
+                    assert len(entries) <=1
+                    if entries:
+                        return entries[0].get(key,None)
+
                 # Determine account
                 account = Account(
                     name=item["sponsorEntity"]["login"],
-                    image=item["sponsorEntity"]["avatarUrl"],
-                    url=item["sponsorEntity"]["url"],
+                    image=get_overwrite("image") or item["sponsorEntity"]["avatarUrl"],
+                    url=get_overwrite("url") or item["sponsorEntity"]["url"],
                     org=item["sponsorEntity"]["__typename"].lower() == "organization",
                 )
 
@@ -225,6 +238,44 @@ def min_amount(sponsor):
     else:
         return 10
 
+def write_sponsors_readme(sponsors:list[Sponsor],file):
+
+    file.write("""\
+## Sponsors
+
+I would like to thank my sponsors. Without them, I would not be able to invest so much time in my projects.
+
+""")
+    tiers={400:"Gold sponsor 🥇",
+           200:"Silver sponsor 🥈",
+           100:"Bronze sponsor 🥉",
+           }
+
+    for amount,name in tiers.items():
+
+        tier_sponsors:list[Sponsor]=[]
+        other_sponsors:list[Sponsor]=[]
+        for sponsor in list(sponsors):
+            if sponsor.amount >= amount:
+                tier_sponsors.append(sponsor)
+            else:
+                other_sponsors.append(sponsor)
+
+
+        if tier_sponsors:
+            file.write(f"### {name}\n\n")
+            file.write('<p align="center">\n')
+            for sponsor in tier_sponsors:
+                file.write(f"""\
+  <a href="{sponsor.account.url}">
+    <img src="{sponsor.account.image}" alt="{sponsor.account.name}" width="300"/>
+  </a>
+""")
+            file.write('</p>\n')
+
+        sponsors=other_sponsors
+        
+
 def main():
     sponsors = get_sponsors()
 
@@ -256,6 +307,11 @@ def main():
         json.dump({"total": total, "count": count}, file)
     with open("sponsors.json", "w") as file:
         json.dump([sponsor.account.as_dict() for sponsor in sponsors if not sponsor.private], file, indent=2)
+
+    with open("sponsors_readme.md","w") as file:
+        write_sponsors_readme(sponsors,file)
+
+
 
 
 if __name__ == "__main__":

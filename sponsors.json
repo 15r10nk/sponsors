@@ -1,5 +1,23 @@
 [
   {
+    "name": "openai",
+    "image": "https://avatars.githubusercontent.com/u/14957082?v=4",
+    "url": "https://github.com/openai",
+    "org": true
+  },
+  {
+    "name": "pcustic",
+    "image": "https://avatars.githubusercontent.com/u/10039951?u=ac03baee5374f179e35872d3e6a0bb54ec4d5c43&v=4",
+    "url": "https://github.com/pcustic",
+    "org": false
+  },
+  {
+    "name": "comet-ml",
+    "image": "https://avatars.githubusercontent.com/u/31487821?v=4",
+    "url": "https://github.com/comet-ml",
+    "org": true
+  },
+  {
     "name": "adamchainz",
     "image": "https://avatars.githubusercontent.com/u/857609?v=4",
     "url": "https://github.com/adamchainz",
@@ -37,7 +55,7 @@
   },
   {
     "name": "nathanjmcdougall",
-    "image": "https://avatars.githubusercontent.com/u/18602289?u=a6299c2ae595ec87c9727b872b0ac08d435de436&v=4",
+    "image": "https://avatars.githubusercontent.com/u/18602289?u=2e7e11a1318eff0402bc10b2ccf5b47b8bb727aa&v=4",
     "url": "https://github.com/nathanjmcdougall",
     "org": false
   },

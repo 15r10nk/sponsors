@@ -1,8 +1,14 @@
 
 [ 
-    {
+  {
     "name": "logfire",
     "image": "https://pydantic.dev/assets/for-external/pydantic_logfire_logo_endorsed_lithium_rgb.svg",
     "url": "https://pydantic.dev/logfire"
+  },
+  {
+    "name": "openai",
+    "image": "https://raw.githubusercontent.com/15r10nk/sponsors/refs/heads/main/logos/OAI_OpenAI_Wordmark_Black.svg",
+    "image_dark": "https://raw.githubusercontent.com/15r10nk/sponsors/refs/heads/main/logos/OAI_OpenAI_Wordmark_White.svg",
+    "url": "https://openai.com"
   }
 ]

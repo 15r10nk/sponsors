@@ -80,6 +80,7 @@ query {
 class Account:
     name: str
     image: str
+    image_dark: str|None
     url: str
     org: bool
 
@@ -137,6 +138,7 @@ def get_sponsors() -> list[Sponsor]:
                 account = Account(
                     name=item["sponsorEntity"]["login"],
                     image=get_overwrite("image") or item["sponsorEntity"]["avatarUrl"],
+                    image_dark=get_overwrite("image_dark"),
                     url=get_overwrite("url") or item["sponsorEntity"]["url"],
                     org=item["sponsorEntity"]["__typename"].lower() == "organization",
                 )
@@ -193,7 +195,7 @@ if dry_run:
 
 def grant(user: str, org: str, team: str):
     if dry_run:
-        print("grant",user,org,team)
+        print(f"grant @{user} access to {org}/{team}")
         return
 
     with httpx.Client() as client:
@@ -246,10 +248,12 @@ def write_sponsors_readme(sponsors:list[Sponsor],file):
 I would like to thank my sponsors. Without them, I would not be able to invest so much time in my projects.
 
 """)
-    tiers={400:"Gold sponsor 🥇",
-           200:"Silver sponsor 🥈",
-           100:"Bronze sponsor 🥉",
-           }
+    tiers={
+        400:"Diamond sponsor 💎",
+        200:"Gold sponsor 🥇",
+        100:"Silver sponsor 🥈",
+        50:"Bronze sponsor 🥉",
+    }
 
     for amount,name in tiers.items():
 
@@ -266,9 +270,17 @@ I would like to thank my sponsors. Without them, I would not be able to invest s
             file.write(f"### {name}\n\n")
             file.write('<p align="center">\n')
             for sponsor in tier_sponsors:
+                if sponsor.account.image_dark:
+                    dark_image=f'<source media="(prefers-color-scheme: dark)" srcset="{sponsor.account.image_dark}">'
+                else:
+                    dark_image=""
+
                 file.write(f"""\
   <a href="{sponsor.account.url}">
-    <img src="{sponsor.account.image}" alt="{sponsor.account.name}" width="300"/>
+    <picture>                           
+      {dark_image}
+      <img src="{sponsor.account.image}" alt="{sponsor.account.name}" width="300"/>
+    </picture>                           
   </a>
 """)
             file.write('</p>\n')

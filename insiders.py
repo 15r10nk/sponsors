@@ -271,19 +271,18 @@ I would like to thank my sponsors. Without them, I would not be able to invest s
             file.write('<p align="center">\n')
             for sponsor in tier_sponsors:
                 if sponsor.account.image_dark:
-                    dark_image=f'<source media="(prefers-color-scheme: dark)" srcset="{sponsor.account.image_dark}">'
+                    dark_image=f'\n      <source media="(prefers-color-scheme: dark)" srcset="{sponsor.account.image_dark}">'
                 else:
                     dark_image=""
 
                 file.write(f"""\
   <a href="{sponsor.account.url}">
-    <picture>                           
-      {dark_image}
+    <picture>{dark_image}
       <img src="{sponsor.account.image}" alt="{sponsor.account.name}" width="300"/>
-    </picture>                           
+    </picture>
   </a>
 """)
-            file.write('</p>\n')
+            file.write('</p>\n\n')
 
         sponsors=other_sponsors
         

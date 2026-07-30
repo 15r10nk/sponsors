@@ -30,6 +30,12 @@
     "org": true
   },
   {
+    "name": "logfire",
+    "image": "https://pydantic.dev/assets/for-external/pydantic_logfire_logo_endorsed_lithium_rgb.svg",
+    "url": "https://pydantic.dev/logfire",
+    "org": true
+  },
+  {
     "name": "tiangolo",
     "image": "https://avatars.githubusercontent.com/u/1326112?u=cb5d06e73a9e1998141b1641aa88e443c6717651&v=4",
     "url": "https://github.com/tiangolo",

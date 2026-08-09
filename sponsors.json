@@ -24,12 +24,6 @@
     "org": false
   },
   {
-    "name": "astral-sh",
-    "image": "https://avatars.githubusercontent.com/u/115962839?v=4",
-    "url": "https://github.com/astral-sh",
-    "org": true
-  },
-  {
     "name": "logfire",
     "image": "https://pydantic.dev/assets/for-external/pydantic_logfire_logo_endorsed_lithium_rgb.svg",
     "url": "https://pydantic.dev/logfire",

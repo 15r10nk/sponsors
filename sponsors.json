@@ -1,11 +1,5 @@
 [
   {
-    "name": "openai",
-    "image": "https://raw.githubusercontent.com/15r10nk/sponsors/refs/heads/main/logos/OAI_OpenAI_Wordmark_Black.svg",
-    "url": "https://openai.com",
-    "org": true
-  },
-  {
     "name": "comet-ml",
     "image": "https://avatars.githubusercontent.com/u/31487821?v=4",
     "url": "https://github.com/comet-ml",
